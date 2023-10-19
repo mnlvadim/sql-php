@@ -1,0 +1,70 @@
+1.
+CREATE TABLE `secondtest`.`employees` (id INT PRIMARY KEY,`full_name` VARCHAR(255) NOT NULL , `DOB` DATE NOT NULL , `salary` INT(16) NOT NULL , `contacts` VARCHAR(255) NOT NULL , `department_id` INT(16) NOT NULL , `grade_id` INT(16) NOT NULL , job_title_id INT(16) NOT NULL, `homeoffice_id` INT(16) NOT NULL , `family_id` VARCHAR(255) NOT NULL ) ENGINE = InnoDB;
+
+INSERT INTO employees (id,full_name, DOB, salary, contacts, department_id, grade_id, job_title_id, homeoffice_id, family_id) 
+VALUES (NULL,'Иванов Иван Иваныч', '1987-10-11', 50000, '89998887766', 1, 1, 1, 1, 1);
+
+
+2.
+CREATE TABLE `secondtest`.`departments` (`department_name` VARCHAR(255) NOT NULL ) ENGINE = InnoDB;
+Insert into departments(id, department_name)
+VALUES (Null,'IT-отдел');
+
+3.
+CREATE TABLE `secondtest`.`grades` (id INT AUTO_INCREMENT PRIMARY KEY, `grade_name` VARCHAR(255) NOT NULL ) ENGINE = InnoDB;
+Insert into grades(id, grade_name)
+VALUES (Null,'Младший специалист');
+
+4.
+CREATE TABLE `secondtest`.`jobs` (id INT AUTO_INCREMENT PRIMARY KEY, `job_name` VARCHAR(255) NOT NULL ) ENGINE = InnoDB;
+Insert into jobs(id, job_name)
+VALUES (Null,'Java-разработчик');
+
+5.
+CREATE TABLE `secondtest`.`homeoffice` (id INT AUTO_INCREMENT PRIMARY KEY, `office_name` VARCHAR(255) NOT NULL ) ENGINE = InnoDB;
+Insert into homeoffice(id, office_name)
+VALUES (Null,'Саратовский офис');
+
+
+6.
+CREATE TABLE `secondtest`.`family` (id INT AUTO_INCREMENT PRIMARY KEY, `family_name` VARCHAR(255) NOT NULL ) ENGINE = InnoDB;
+Insert into family(id, family_name)
+VALUES (Null,'Женат/Замужем');
+
+7.
+
+CREATE TABLE `vacancies` (
+  `id` int(11) NOT NULL PRIMARY KEY AUTO_INCREMENT,
+  `vacancy_name` varchar(255) NOT NULL,
+  `salary` int(16) NOT NULL,
+  `contacts` varchar(255) NOT NULL,
+  `department_id` int(16) NOT NULL,
+  `grade_id` int(16) NOT NULL,
+  `job_title_id` int(16) NOT NULL,
+  `homeoffice_id` int(16) NOT NULL
+)
+
+
+8.
+CREATE TABLE users (
+  id INT PRIMARY KEY AUTO_INCREMENT,
+  username VARCHAR(50) NOT NULL,
+  password VARCHAR(50) NOT NULL
+);
+
+
+
+INSERT INTO users (username, password)
+VALUES ('admin', 'admin');
+INSERT INTO users (username, password)
+VALUES ('user', 'user');
+
+
+
+СВЯЗИ
+
+ALTER TABLE `employees` ADD FOREIGN KEY (`department_id`) REFERENCES `departments`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+Пример джоина
+
+SELECT * FROM employees RIGHT JOIN departments ON employees.department_id = departments.id;
